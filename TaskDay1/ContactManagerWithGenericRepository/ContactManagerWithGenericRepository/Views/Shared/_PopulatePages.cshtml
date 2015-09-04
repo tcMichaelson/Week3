@@ -1,0 +1,9 @@
+﻿@model 
+<ul class="pagination">
+    @{
+        for (var i = 1; (i <= Math.Ceiling(Model.Count() / 25.0)); i++) {
+            <li><a href="/Contacts/Index/" @i>@i</a></li>
+        }
+    }
+</ul>
+

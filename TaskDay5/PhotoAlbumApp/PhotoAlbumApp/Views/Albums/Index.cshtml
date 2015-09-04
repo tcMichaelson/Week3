@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PhotoAlbumApp.Models.Album>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null) {
+        foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                    @{
+                        try {
+                            <text><td height="200px"><img src="@item.Photos[0].Path" /></td></text>
+                        }
+                        catch { 
+                            <text><td>No pics Uploaded</td></text>
+                        }
+                   }
+                <td>
+                    @Html.ActionLink("Edit Name", "Edit", new { name=item.Name }) |
+                    @Html.ActionLink("View Pics", "ViewPics", new { name=item.Name }) |
+                    @Html.ActionLink("Delete Album", "Delete", new { name=item.Name })
+                </td>
+            </tr>
+        }
+    }
+                        
+
+</table>

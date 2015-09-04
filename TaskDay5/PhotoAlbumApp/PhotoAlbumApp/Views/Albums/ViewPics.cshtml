@@ -1,0 +1,30 @@
+﻿@model PhotoAlbumApp.Models.AlbumViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Album.Name</h2>
+
+@if (Model.Photos.Count > 0) {
+    foreach (var photo in Model.Photos) {
+        <ul>
+            <li>
+                <p><img src="@photo.Path" /></p>
+                <p><strong>@photo.Title</strong></p>
+                <p>@photo.Rating.ToString()</p>
+                <p>@photo.Description</p>
+                
+                <button value="Edit" class="btn" formaction="Photos/Edit" id="@photo.Path"/>
+                <button value="Delete" class="btn" formaction="Photos/Delete" id="@photo.Path" />
+            </li>
+        </ul>
+        <hr />
+    }
+}
+
+@Html.ActionLink("Add Photo", "Add", "Photos", new { AlbumName = Model.Album.Name }, new { })
+
+
+
+
